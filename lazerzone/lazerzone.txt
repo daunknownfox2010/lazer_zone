@@ -1,0 +1,27 @@
+"lazerzone"
+{
+	"base"		"base"
+	"title"		"Lazer Zone"
+	"maps"		"^lz_"
+	"menusystem"	"1"
+
+	"settings"
+	{
+		"1"
+		{
+			"name"		"lz_sv_gametype"
+			"text"		"Game Type <0-1>"
+			"help"		"Sets the Lazer Zone game type."
+			"type"		"Numeric"
+			"default"	"0"
+		}
+		"2"
+		{
+			"name"		"lz_sv_custom_playermodels"
+			"text"		"Custom Player Models"
+			"help"		"Allows use of custom playermodels in the gamemode."
+			"type"		"CheckBox"
+			"default"	"0"
+		}
+	}
+}
