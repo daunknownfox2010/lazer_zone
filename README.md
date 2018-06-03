@@ -14,9 +14,9 @@ Lazer Zone is a gamemode for Garry's Mod that consists of various different game
 * There are various power-ups users can get.
 
 ## Console variables
-`lz_cl_dynamic_lights` - disable dynamic lights on other players.
-`lz_cl_screen_scale` - scales the vgui elements.
-`lz_sh_powerups_enabled` - enable power-ups.
-`lz_sh_powerups_nuke` - enable the nuke power-up.
-`lz_sv_custom_playermodels` - allow custom player models.
-`lz_sv_gametype` - set the game type <0-1>.
+`lz_cl_dynamic_lights` - disable dynamic lights on other players.<br/>
+`lz_cl_screen_scale` - scales the vgui elements.<br/>
+`lz_sh_powerups_enabled` - enable power-ups.<br/>
+`lz_sh_powerups_nuke` - enable the nuke power-up.<br/>
+`lz_sv_custom_playermodels` - allow custom player models.<br/>
+`lz_sv_gametype` - set the game type <0-1>.<br/>
