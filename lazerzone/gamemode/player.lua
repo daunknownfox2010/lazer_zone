@@ -47,6 +47,8 @@ function GM:PlayerInitialSpawn( ply )
 
 	ply:SetTeam( TEAM_UNASSIGNED );
 
+	ply.timesShot = 0;
+
 	if ( GAMEMODE.TeamBased ) then
 	
 		ply:ConCommand( "gm_showteam" );

@@ -18,6 +18,7 @@ include( "player.lua" );
 
 
 -- Console Variables
+local lz_sv_no_instant_death = CreateConVar( "lz_sv_no_instant_death", 0, { FCVAR_ARCHIVE, FCVAR_NOTIFY }, "Players need to be shot three times to die." );
 local lz_sv_gametype = CreateConVar( "lz_sv_gametype", 0, { FCVAR_ARCHIVE, FCVAR_NOTIFY }, "Sets the Lazer Zone game type." );
 
 
@@ -160,6 +161,44 @@ function GM:EntityTakeDamage( ent, info )
 	-- Is a player
 	if ( IsRoundState( ROUND_INROUND ) && ent:IsPlayer() && !ent:Deactivated() && !ent:HasStatusEffect( STATUS_INVINCIBLE ) && IsValid( attacker ) && attacker:IsPlayer() && !attacker:Deactivated() && ( hitGroups[ ent:LastHitGroup() ] || attacker:HasStatusEffect( STATUS_NUKE ) ) && ( !GAMEMODE.TeamBased || ( ent:Team() != attacker:Team() ) || mp_friendlyfire:GetBool() ) ) then
 	
+		-- Process if it is instant death or not
+		if ( lz_sv_no_instant_death:GetBool() && ( ent.timesShot < 2 ) && !attacker:HasStatusEffect( STATUS_NUKE ) ) then
+		
+			ent.timesShot = ent.timesShot + 1;
+		
+			if ( !GAMEMODE.TeamBased || ( ent:Team() != attacker:Team() ) ) then
+			
+				-- Play a bell sound for the attacker
+				net.Start( "LZNETPlaySound" );
+					net.WriteString( "buttons/blip1.wav" );
+				net.Send( attacker );
+			
+			else
+			
+				-- Display information text
+				net.Start( "LZNETInformationText" );
+					net.WriteString( "FRIENDLY FIRE!" );
+					net.WriteInt( 2, 4 );
+				net.Send( attacker );
+			
+			end
+		
+			-- Play a warning sound for the player
+			net.Start( "LZNETPlaySound" );
+				net.WriteString( "common/warning.wav" );
+			net.Send( ent );
+		
+			-- Display information text
+			net.Start( "LZNETInformationText" );
+				net.WriteString( "YOU'VE BEEN HIT! SHOTS UNTIL DEATH: "..( 3 - ent.timesShot ) );
+				net.WriteInt( 5, 4 );
+			net.Send( ent );
+		
+			return true;
+		
+		end
+		ent.timesShot = 0;
+	
 		-- Score
 		if ( GAMEMODE.TeamBased && ( ent:Team() == attacker:Team() ) ) then
 		
@@ -222,7 +261,7 @@ function GM:EntityTakeDamage( ent, info )
 			net.Start( "LZNETInformationText" );
 				net.WriteString( "FRIENDLY FIRE!" );
 				net.WriteInt( 2, 4 );
-			net.Broadcast();
+			net.Send( attacker );
 		
 		end
 	
@@ -258,19 +297,6 @@ end
 timer.Create( "LZWaitingForPlayers", 1, 0, WaitingForPlayers );
 
 
--- Player PreActivation
-local function PlayerPreActivate()
-
-	-- Activate players
-	for _, ply in ipairs( player.GetAll() ) do
-	
-		ply:SetDeactivated( false, true );
-	
-	end
-
-end
-
-
 -- Start gamemode preround
 function GM:StartPreRound()
 
@@ -298,9 +324,6 @@ function GM:StartPreRound()
 
 	-- Hide scoreboard
 	BroadcastLua( "GAMEMODE:ScoreboardHide();" );
-
-	-- Start the round
-	timer.Simple( 8, PlayerPreActivate );
 
 	-- Start the round
 	timer.Simple( 10, function() GAMEMODE:StartRound(); end );
@@ -337,7 +360,7 @@ function GM:StartRound()
 		if ( !ply:IsSpectating() ) then
 		
 			ply:Freeze( false );
-			ply.deactivatedTime = 0;
+			ply.deactivatedTime = CurTime() + 8;
 		
 		end
 	
@@ -373,6 +396,7 @@ function GM:EndRound()
 		
 			ply:SetStatusEffect( STATUS_NONE );
 			ply:Freeze( true );
+			ply.timesShot = 0;
 		
 		end
 	

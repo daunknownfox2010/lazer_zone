@@ -1,6 +1,10 @@
 -- Lazer Zone by daunknownfox2010
 
 
+-- Console Variables
+local lz_cl_music_volume = CreateClientConVar( "lz_cl_music_volume", 0.4, true, false, "Change the music volume <0-1>." );
+
+
 -- Adds the music path to the game
 local LZMusicTable = {};
 function GM:AddMusicPath( path, fileType )
@@ -27,7 +31,7 @@ function GM:AddMusicPath( path, fileType )
 	local fileList, folderList = file.Find( searchPathFind, "GAME" );
 	for k, v in ipairs( fileList ) do
 	
-		util.PrecacheSound( soundPath..v );
+		util.PrecacheSound( searchPath..v );
 	
 		local index = #LZMusicTable + 1;
 		LZMusicTable[ index ] = CreateSound( game.GetWorld(), searchPath..v );
@@ -65,6 +69,7 @@ function GM:RoundMusic( bool )
 	
 		local chosenMusic = table.Random( LZMusicTable );
 		chosenMusic:Play();
+		chosenMusic:ChangeVolume( lz_cl_music_volume:GetFloat() );
 	
 	else
 	

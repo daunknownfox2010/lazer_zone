@@ -48,7 +48,7 @@ function GM:ShowHelp()
 	HelpLabel:SizeToContents();
 
 	self.HelpMenuFrame:SetDraggable( false );
-	self.HelpMenuFrame:SetSize( ControlledScreenScale( 350 ), ControlledScreenScale( 175 ) );
+	self.HelpMenuFrame:SetSize( ControlledScreenScale( 350 ), ControlledScreenScale( 200 ) );
 	self.HelpMenuFrame:Center();
 	self.HelpMenuFrame:MakePopup();
 	self.HelpMenuFrame:SetKeyboardInputEnabled( false );

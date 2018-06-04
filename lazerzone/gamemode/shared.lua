@@ -8,12 +8,16 @@ include( "player_meta.lua" );
 include( "player_class/player_lazer.lua" );
 
 
+-- Console Variables
+local lz_sh_yellow_team_enabled = CreateConVar( "lz_sh_yellow_team_enabled", 1, { FCVAR_ARCHIVE, FCVAR_NOTIFY, FCVAR_REPLICATED }, "Include the Yellow team in the game." );
+
+
 -- Global gamemode variables
 GM.Name = "Lazer Zone";
 GM.Author = "daunknownfox2010";
 GM.Email = "N/A";
 GM.Website = "N/A";
-GM.Version = "rev. 1 (Public Alpha)";
+GM.Version = "rev. 2 (Public Alpha)";
 GM.TeamBased = true;
 
 GM.PlayerModels = {
@@ -47,7 +51,7 @@ function GM:CreateTeams()
 	team.SetSpawnPoint( TEAM_RED, { "info_player_rebel", "info_player_terrorist" } );
 
 	TEAM_YELLOW = 3;
-	team.SetUp( TEAM_YELLOW, "Yellow Team", Color( 255, 255, 0 ) );
+	team.SetUp( TEAM_YELLOW, "Yellow Team", Color( 255, 255, 0 ), ( !LZDisableYellowTeam && lz_sh_yellow_team_enabled:GetBool() ) );
 	team.SetSpawnPoint( TEAM_YELLOW, { "info_player_start", "info_player_deathmatch" } );
 
 	team.SetSpawnPoint( TEAM_SPECTATOR, "worldspawn" );

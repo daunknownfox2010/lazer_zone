@@ -7,6 +7,7 @@ surface.CreateFont( "ScoreInfoDefault", {
 } );
 
 
+local YellowTeamEnabled = ( !LZDisableYellowTeam && GetConVar( "lz_sh_yellow_team_enabled" ):GetBool() );
 local SCOREINFO_PANEL = {
 
 	Init = function( self )
@@ -15,7 +16,15 @@ local SCOREINFO_PANEL = {
 	
 		if ( GAMEMODE.TeamBased ) then
 		
-			self:SetSize( ControlledScreenScale( 200 ), ControlledScreenScale( 100 ) );
+			if ( YellowTeamEnabled ) then
+			
+				self:SetSize( ControlledScreenScale( 200 ), ControlledScreenScale( 100 ) );
+			
+			else
+			
+				self:SetSize( ControlledScreenScale( 200 ), ControlledScreenScale( 80 ) );
+			
+			end
 		
 		else
 		
@@ -60,14 +69,18 @@ local SCOREINFO_PANEL = {
 			self.RedScore.SavedScore = 0;
 			self.RedScore.RefreshScore = 0;
 		
-			self.YellowScore = self:Add( "DLabel" );
-			self.YellowScore:SetPos( ControlledScreenScale( 5 ), ControlledScreenScale( 80 ) );
-			self.YellowScore:SetText( "Yellow Score: 00000000000" );
-			self.YellowScore:SetTextColor( Color( 255, 255, 0 ) );
-			self.YellowScore:SetFont( "ScoreInfoDefault" );
-			self.YellowScore:SizeToContents();
-			self.YellowScore.SavedScore = 0;
-			self.YellowScore.RefreshScore = 0;
+			if ( YellowTeamEnabled ) then
+			
+				self.YellowScore = self:Add( "DLabel" );
+				self.YellowScore:SetPos( ControlledScreenScale( 5 ), ControlledScreenScale( 80 ) );
+				self.YellowScore:SetText( "Yellow Score: 00000000000" );
+				self.YellowScore:SetTextColor( Color( 255, 255, 0 ) );
+				self.YellowScore:SetFont( "ScoreInfoDefault" );
+				self.YellowScore:SizeToContents();
+				self.YellowScore.SavedScore = 0;
+				self.YellowScore.RefreshScore = 0;
+			
+			end
 		
 		end
 	
@@ -140,7 +153,7 @@ local SCOREINFO_PANEL = {
 		
 		end
 	
-		if ( GAMEMODE.TeamBased && ( self.YellowScore != nil ) ) then
+		if ( GAMEMODE.TeamBased && YellowTeamEnabled && ( self.YellowScore != nil ) ) then
 		
 			if ( self.YellowScore.SavedScore != team.GetScore( TEAM_YELLOW ) ) then
 			

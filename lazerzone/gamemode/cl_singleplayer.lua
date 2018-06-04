@@ -87,7 +87,8 @@ function GM:OpenSettingsMenu()
 	};
 
 	local MultiConVars = {
-		[ "lz_cl_screen_scale" ] = { "Screen Scale", 0, 4 }
+		[ "lz_cl_screen_scale" ] = { "Screen Scale", 0, 4 },
+		[ "lz_cl_music_volume" ] = { "Music Volume", 0, 1 }
 	};
 
 	local SettingsFrame = vgui.Create( "DFrame" );

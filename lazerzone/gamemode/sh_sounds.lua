@@ -139,7 +139,7 @@ sound.Add( {
 sound.Add( {
 	name = "LazerZone.LazerGun",
 	channel = CHAN_WEAPON,
-	volume = 1,
+	volume = 0.75,
 	level = 140,
 	pitch = 100,
 	sound = "lazerzone/weapons/lz_lazergun.wav"

@@ -80,7 +80,7 @@ function meta:SetDeactivated( bool, playSound )
 	
 		self:SetLaggedMovementValue( 1 );
 	
-		if ( self:HoldingLazer() ) then self:GetActiveWeapon():SetNextPrimaryFire( CurTime() + 0.6 ); end
+		if ( self:HoldingLazer() ) then self:GetActiveWeapon():SetNextPrimaryFire( CurTime() + 1 ); end
 	
 	end
 
@@ -178,7 +178,7 @@ function meta:SetStatusEffect( num )
 		net.Start( "LZNETInformationText" );
 			net.WriteString( "RAPID FIRE ENABLED!" );
 			net.WriteInt( 3, 4 );
-		net.Broadcast();
+		net.Send( self );
 	
 	elseif ( num == STATUS_INVINCIBLE ) then
 	
@@ -189,7 +189,7 @@ function meta:SetStatusEffect( num )
 		net.Start( "LZNETInformationText" );
 			net.WriteString( "INVINCIBILITY ENABLED!" );
 			net.WriteInt( 3, 4 );
-		net.Broadcast();
+		net.Send( self );
 	
 	elseif ( num == STATUS_INVISIBLE ) then
 	
@@ -200,14 +200,14 @@ function meta:SetStatusEffect( num )
 		net.Start( "LZNETInformationText" );
 			net.WriteString( "INVISIBILITY ENABLED!" );
 			net.WriteInt( 3, 4 );
-		net.Broadcast();
+		net.Send( self );
 	
 	elseif ( num == STATUS_NUKE ) then
 	
 		-- Nuke disabled
 		if ( !lz_sh_powerups_nuke:GetBool() ) then
 		
-			self:SetStatusEffect( math.random( 1, 3 ) );
+			self:SetStatusEffect( num - 1 );
 			return;
 		
 		end
@@ -219,7 +219,7 @@ function meta:SetStatusEffect( num )
 		net.Start( "LZNETInformationText" );
 			net.WriteString( "NUKE ENABLED!" );
 			net.WriteInt( 2, 4 );
-		net.Broadcast();
+		net.Send( self );
 	
 	end
 
