@@ -17,7 +17,7 @@ GM.Name = "Lazer Zone";
 GM.Author = "daunknownfox2010";
 GM.Email = "N/A";
 GM.Website = "N/A";
-GM.Version = "rev. 2 (Public Alpha)";
+GM.Version = "rev. 3 (Public Alpha)";
 GM.TeamBased = true;
 
 GM.PlayerModels = {

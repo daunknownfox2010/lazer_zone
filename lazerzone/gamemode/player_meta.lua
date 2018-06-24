@@ -48,7 +48,17 @@ function meta:SetDeactivated( bool, playSound )
 
 	if ( CLIENT ) then return; end
 
-	self:SetNoDraw( bool );
+	if ( bool ) then
+	
+		self:SetMaterial( "models/effects/vol_light001" );
+	
+	else
+	
+		self:SetMaterial();
+	
+	end
+
+	self:DrawShadow( !bool );
 
 	if ( IsValid( self:GetActiveWeapon() ) ) then
 	
@@ -66,7 +76,7 @@ function meta:SetDeactivated( bool, playSound )
 		
 		end
 	
-		self:SetLaggedMovementValue( 1.25 );
+		self:SetLaggedMovementValue( 1.5 );
 	
 		self.statusEffectTime = 0;
 	
@@ -80,7 +90,7 @@ function meta:SetDeactivated( bool, playSound )
 	
 		self:SetLaggedMovementValue( 1 );
 	
-		if ( self:HoldingLazer() ) then self:GetActiveWeapon():SetNextPrimaryFire( CurTime() + 1 ); end
+		if ( self:HoldingLazer() ) then self:GetActiveWeapon():SetNextPrimaryFire( CurTime() + 1.5 ); end
 	
 	end
 
@@ -161,6 +171,18 @@ function meta:SetStatusEffect( num )
 			
 			end
 		
+		elseif ( self:GetStatusEffect() == STATUS_INVISIBLE ) then
+		
+			self:SetMaterial();
+		
+			self:DrawShadow( true );
+		
+			if ( IsValid( self:GetActiveWeapon() ) ) then
+			
+				self:GetActiveWeapon():SetNoDraw( false );
+			
+			end
+		
 		end
 	
 	elseif ( num == STATUS_RAPIDFIRE ) then
@@ -195,6 +217,16 @@ function meta:SetStatusEffect( num )
 	
 		self.statusEffectTime = CurTime() + 15;
 	
+		self:SetMaterial( "models/effects/vol_light001" );
+	
+		self:DrawShadow( false );
+	
+		if ( IsValid( self:GetActiveWeapon() ) ) then
+		
+			self:GetActiveWeapon():SetNoDraw( true );
+		
+		end
+	
 		self:EmitSound( PlayerInvisibilitySound );
 	
 		net.Start( "LZNETInformationText" );
@@ -212,12 +244,12 @@ function meta:SetStatusEffect( num )
 		
 		end
 	
-		self.statusEffectTime = CurTime() + 3;
+		self.statusEffectTime = CurTime() + 4;
 	
 		self:EmitSound( PlayerNukeSound );
 	
 		net.Start( "LZNETInformationText" );
-			net.WriteString( "NUKE ENABLED!" );
+			net.WriteString( "NUKE ENABLED! SHOOT SOMEONE" );
 			net.WriteInt( 2, 4 );
 		net.Send( self );
 	

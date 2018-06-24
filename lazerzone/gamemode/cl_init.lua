@@ -196,7 +196,8 @@ function GM:OnPlayerChat( ply, text, team, dead )
 
 	if ( IsValid( ply ) ) then
 	
-		table.insert( tab, ply );
+		table.insert( tab, ply:GetPlayerColorStructure() );
+		table.insert( tab, ply:Nick() );
 	
 	else
 	
@@ -219,7 +220,7 @@ end
 function GM:PostPlayerDraw( ply )
 
 	-- Dynamic light
-	if ( lz_cl_player_dynamic_lights:GetBool() && ply:Alive() && !ply:Deactivated() && !ply:IsSpectating() && ( ply != LocalPlayer() ) ) then
+	if ( lz_cl_player_dynamic_lights:GetBool() && ply:Alive() && !ply:Deactivated() && !ply:IsSpectating() && !ply:HasStatusEffect( STATUS_INVISIBLE ) && ( ply != LocalPlayer() ) ) then
 	
 		local dlight = DynamicLight( ply:EntIndex() );
 		if ( dlight ) then
@@ -236,19 +237,6 @@ function GM:PostPlayerDraw( ply )
 			dlight.Decay = 512;
 		
 		end
-	
-	end
-
-end
-
-
--- Before the player has been drawn
-function GM:PrePlayerDraw( ply )
-
-	-- Invisibility
-	if ( ply:Alive() && !ply:IsSpectating() && !ply:Deactivated() && ply:HasStatusEffect( STATUS_INVISIBLE ) ) then
-	
-		return true;
 	
 	end
 
