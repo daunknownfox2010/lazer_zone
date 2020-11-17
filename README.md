@@ -27,10 +27,14 @@ Lazer Zone is a gamemode for Garry's Mod that consists of various different game
 
 ## Recomended Maps
 https://steamcommunity.com/sharedfiles/filedetails/?id=1389067371
+
 https://steamcommunity.com/sharedfiles/filedetails/?id=473594402
+
 https://steamcommunity.com/sharedfiles/filedetails/?id=1532140233
 
 ## CREDITS:
 Credit goes for the original authors of the gamemode
+
 Original: D4UNKNOWNFOX2010
+
 Modifications: Lucky
