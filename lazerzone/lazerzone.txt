@@ -2,7 +2,7 @@
 {
 	"base"		"base"
 	"title"		"Lazer Zone"
-	"maps"		"^lz_"
+	"maps"		"^lz_|^mu_|^gm_|^rp_|^laser_|^lazer_"
 	"menusystem"	"1"
 
 	"settings"
