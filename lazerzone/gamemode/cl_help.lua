@@ -40,7 +40,7 @@ function GM:ShowHelp()
 
 	local HelpLabel = self.HelpMenuFrame:Add( "DLabel" );
 	HelpLabel:SetFont( "HelpMenu");
-	HelpLabel:SetText( "Lazer Zone is a simple gamemode created by "..GAMEMODE.Author..".\n\nCurrently, there is only two game types available: Team & Deathmatch.\n\nIn Team, there are three teams: Blue, Red & Yellow.\n> The team with the most points is the winner.\n> Team \"Bases\" are enabled and can be destroyed for lots of points.\n> Getting tagged will instantly deactivate you.\n> Various special abilities are available." );
+	HelpLabel:SetText( "Lazer Zone is a simple gamemode created by "..GAMEMODE.Author..".\n\nModified by Lucky.\n\nCurrently, there is only two game types available: Team & Deathmatch.\n\nIn Team, there are three teams: Blue, Red & Yellow.\n> The team with the most points is the winner.\n> Team \"Bases\" are enabled and can be destroyed for lots of points.\n> Getting tagged will instantly deactivate you.\n> Various special abilities are available." );
 	HelpLabel:SetTextColor( Color( 255, 255, 255 ) );
 	HelpLabel:Dock( FILL );
 	HelpLabel:SetContentAlignment( 7 );
