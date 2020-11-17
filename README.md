@@ -1,3 +1,5 @@
+![Lazer Zone Logo](https://i.imgur.com/Aak8iZl.png "Lazer Zone v4 Puplic Beta")
+
 # Lazer Zone
 Lazer Zone is a gamemode for Garry's Mod that consists of various different game types. The gamemode is unique as the rule set is different from what most people expect for a Lazer Tag game.
 
