@@ -14,10 +14,10 @@ local lz_sh_yellow_team_enabled = CreateConVar( "lz_sh_yellow_team_enabled", 1, 
 
 -- Global gamemode variables
 GM.Name = "Lazer Zone";
-GM.Author = "daunknownfox2010";
+GM.Author = "D4UNKNOWNFOX2010";
 GM.Email = "N/A";
-GM.Website = "N/A";
-GM.Version = "rev. 3 (Public Alpha)";
+GM.Website = "https://daunknownfox2010.github.io/";
+GM.Version = "rev. 4 (Public Alpha)";
 GM.TeamBased = true;
 
 GM.PlayerModels = {

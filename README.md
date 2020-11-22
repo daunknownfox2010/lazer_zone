@@ -1,3 +1,5 @@
+![Lazer Zone Logo](https://i.imgur.com/Aak8iZl.png "Lazer Zone v4 Puplic Beta")
+
 # Lazer Zone
 Lazer Zone is a gamemode for Garry's Mod that consists of various different game types. The gamemode is unique as the rule set is different from what most people expect for a Lazer Tag game.
 
@@ -24,3 +26,17 @@ Lazer Zone is a gamemode for Garry's Mod that consists of various different game
 `lz_sv_custom_playermodels` - allow custom player models.<br/>
 `lz_sv_no_instant_death` - players don't die instantly when shot.<br/>
 `lz_sv_gametype` - set the game type <0-1>.<br/>
+
+## Recomended Maps
+https://steamcommunity.com/sharedfiles/filedetails/?id=1389067371
+
+https://steamcommunity.com/sharedfiles/filedetails/?id=473594402
+
+https://steamcommunity.com/sharedfiles/filedetails/?id=1532140233
+
+## CREDITS:
+Credit goes for the original authors of the gamemode
+
+Original: D4UNKNOWNFOX2010
+
+Modifications: Lucky
